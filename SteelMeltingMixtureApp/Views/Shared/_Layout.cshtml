@@ -1,0 +1,83 @@
+﻿<!DOCTYPE html>
+<html class="h-100">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - Оптимизация сталеплавильной шихты</title>
+    
+    <link rel="stylesheet" href="~/Content/css/bootstrap.css" />
+    <script src="~/Scripts/jquerry/jquery-3.4.1.js"></script>
+    <script src="~/Scripts/js/bootstrap.js"></script>
+
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+</head>
+<body class="d-flex flex-column h-100">
+    <main class="flex-shrink-0">
+        <nav class="navbar navbar-expand-sm navbar-light bg-success">
+            <div class="container">
+
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav mr-auto">
+                         <li class="nav-item">
+                             @Html.ActionLink("Главная", "Index", "Home", null, new { @class = "nav-link" })
+                         </li>
+                         <li class="nav-item">
+                             @Html.ActionLink("Личный кабинет", "Cabinet", "Home", null, new { @class = "nav-link" })
+                         </li>
+                         <li class="nav-item">
+                            @Html.ActionLink("О программе", "About", "Home", null, new { @class = "nav-link" })
+                         </li>
+                         <li class="nav-item">
+                            @Html.ActionLink("Контакты", "Contact", "Home", null, new { @class = "nav-link" })
+                         </li>
+                    </ul>
+                     <div class="form-inline my-3 my-lg-0">
+                         @Html.Partial("_LoginPartial")
+                     </div>
+                </div>
+            </div>
+        </nav>           
+             <div id="body">
+                  @RenderSection("featured", required: false)
+               <section class="content-wrapper main-content clear-fix">
+                   @RenderBody()
+               </section>
+             </div>
+    </main>
+    <footer class="footer mt-auto py-3">
+        @*НИЖНЯЯ ПАНЕЛЬ СО СПРАВОЧНОЙ ИНФОРМАЦИЕЙ*@
+        <div class="row">
+            <div class="navbar fixed-bottom navbar-expand-lg navbar-light bg-success">
+                <div class="container py-0">
+                    <div class="col-8">
+                        <h5>Разработчики:</h5>
+                        Бабушкин Борис Дмитриевич, <a class="text-danger" href="mailto:https://vk.com/id85414812">https://vk.com/id85414812</a> <br />
+                        Лавров Владислав Васильевич, <a class="text-danger" href="mailto:v.v.lavrov@urfu.ru">v.v.lavrov@urfu.ru</a>
+                        @ViewBag.Assembly<br />
+                        <p>&copy; @DateTime.Now.Year - Кафедра "Теплофизика и информатика в металлургии" УрФУ, г. Екатеринбург</p>
+                    </div>
+                    <div class="col-4" style="text-align: left;">
+                        620002, Россия, г. Екатеринбург,<br>ул. Мира, д. 28.<br />
+                        Уральский Федеральный университет имени Б.Н.Ельцина, факультет ИНМТ <br />
+                        <abbr title="Телефон">Телефон:</abbr>
+                        (343) 375-44-514
+                    </div>
+                    <div class="col" style="text-align: left;">
+                        @*620002, Россия, г. Екатеринбург, ул. Мира, д. 28.<br />
+                        Кафедра "Теплофизика и информатика в металлургии", ИНМТ Уральский федеральный университет<br />
+                        <abbr title="Телефон рабочий">Телефон рабочий:</abbr>
+                        (343) 375-44-51*@
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+    </footer>
+        
+    @RenderSection("scripts", required: false)
+
+</body>
+</html>

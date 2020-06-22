@@ -1,0 +1,280 @@
+﻿@{
+    ViewBag.Title = "Демонстрационный пример решения задачи оптимизации сталеплавильной шихты";
+}
+<br />
+
+<link rel="stylesheet" href="~/Content/css/bootstrap.css" />
+<script src="~/Scripts/js/bootstrap.js"></script>
+
+<div class="form-group">
+    <label style="font-size: 35px; margin-left: +500px; color: forestgreen" class="col-8">Исходные данные:</label>
+    <br />
+</div>
+
+
+<body>
+    <div class="position-relative overflow-hidden p-0 p-md-5 m-md-5 text-center bg-light">
+        <form action="~/Home/RezultDemo" method="post" class="form-horizontal" id="form_calc" style="margin-top: 30px">
+
+            <div class="form-group">
+                <label style="font-size: 35px; margin-left; color: dodgerblue; margin-top: 20px" class="col-xs-12">Состав и стоимость компонентов шихты</label>
+            </div>
+
+            <div class="form-group" style="margin-top: 50px">
+                <label class="col-xs-5">Компонент шихты</label>
+                <label class="col-xs-1" style="text-align:center">Si</label>
+                <label class="col-xs-1" style="text-align:center">Mn</label>
+                <label class="col-xs-1" style="text-align:center">Cr</label>
+                <label class="col-xs-1" style="text-align:center">Ni</label>
+                <label class="col-xs-3" style="text-align:center">Стоимость, у.е./т</label>
+            </div>
+
+            <div class="form-group">
+                <label class="col-xs-5">Чугун литейный хромоникелевый</label>
+                <input class="col-xs-1" type="text" name="Si_InComponent_1" value="2,95" style="text-align:center" />
+                <input class="col-xs-1" type="text" name="Mn_InComponent_1" value="0,55" style="text-align:center" />
+                <input class="col-xs-1" type="text" name="Cr_InComponent_1" value="2,45" style="text-align:center" />
+                <input class="col-xs-1" type="text" name="Ni_InComponent_1" value="1,20" style="text-align:center" />
+                <input class="col-xs-3" type="text" name="CostComponent_1" value="75,50" style="text-align:center" />
+            </div>
+            <div class="form-group">
+                <label class="col-xs-5">Чугун литейный коксовый</label>
+                <input class="col-xs-1" type="text" name="Si_InComponent_2" value="3,64" style="text-align:center" />
+                <input class="col-xs-1" type="text" name="Mn_InComponent_2" value="0,78" style="text-align:center" />
+                <input class="col-xs-1" type="text" name="Cr_InComponent_2" value="0,00" style="text-align:center" />
+                <input class="col-xs-1" type="text" name="Ni_InComponent_2" value="0,00" style="text-align:center" />
+                <input class="col-xs-3" type="text" name="CostComponent_2" value="68,00" style="text-align:center" />
+            </div>
+            <div class="form-group">
+                <label class="col-xs-5">Чугун зеркальный</label>
+                <input class="col-xs-1" type="text" name="Si_InComponent_3" value="2,00" style="text-align:center" />
+                <input class="col-xs-1" type="text" name="Mn_InComponent_3" value="23,4" style="text-align:center" />
+                <input class="col-xs-1" type="text" name="Cr_InComponent_3" value="0,00" style="text-align:center" />
+                <input class="col-xs-1" type="text" name="Ni_InComponent_3" value="0,00" style="text-align:center" />
+                <input class="col-xs-3" type="text" name="CostComponent_3" value="97,00" style="text-align:center" />
+            </div>
+            <div class="form-group">
+                <label class="col-xs-5">Лом чугунный</label>
+                <input class="col-xs-1" type="text" name="Si_InComponent_4" value="1,50" style="text-align:center" />
+                <input class="col-xs-1" type="text" name="Mn_InComponent_4" value="0,70" style="text-align:center" />
+                <input class="col-xs-1" type="text" name="Cr_InComponent_4" value="0,00" style="text-align:center" />
+                <input class="col-xs-1" type="text" name="Ni_InComponent_4" value="0,00" style="text-align:center" />
+                <input class="col-xs-3" type="text" name="CostComponent_4" value="36,20" style="text-align:center" />
+            </div>
+            <div class="form-group">
+                <label class="col-xs-5">Лом стальной</label>
+                <input class="col-xs-1" type="text" name="Si_InComponent_5" value="0,50" style="text-align:center" />
+                <input class="col-xs-1" type="text" name="Mn_InComponent_5" value="0,50" style="text-align:center" />
+                <input class="col-xs-1" type="text" name="Cr_InComponent_5" value="0,00" style="text-align:center" />
+                <input class="col-xs-1" type="text" name="Ni_InComponent_5" value="0,00" style="text-align:center" />
+                <input class="col-xs-3" type="text" name="CostComponent_5" value="34,30" style="text-align:center" />
+            </div>
+            <div class="form-group">
+                <label class="col-xs-5">Возврат</label>
+                <input class="col-xs-1" type="text" name="Si_InComponent_6" value="0,40" style="text-align:center" />
+                <input class="col-xs-1" type="text" name="Mn_InComponent_6" value="0,65" style="text-align:center" />
+                <input class="col-xs-1" type="text" name="Cr_InComponent_6" value="0,00" style="text-align:center" />
+                <input class="col-xs-1" type="text" name="Ni_InComponent_6" value="0,00" style="text-align:center" />
+                <input class="col-xs-3" type="text" name="CostComponent_6" value="36,20" style="text-align:center" />
+            </div>
+            <div class="form-group">
+                <label class="col-xs-5">Ферромарганец</label>
+                <input class="col-xs-1" type="text" name="Si_InComponent_7" value="2,00" style="text-align:center" />
+                <input class="col-xs-1" type="text" name="Mn_InComponent_7" value="84,50" style="text-align:center" />
+                <input class="col-xs-1" type="text" name="Cr_InComponent_7" value="0,00" style="text-align:center" />
+                <input class="col-xs-1" type="text" name="Ni_InComponent_7" value="0,00" style="text-align:center" />
+                <input class="col-xs-3" type="text" name="CostComponent_7" value="120,00" style="text-align:center" />
+            </div>
+
+            <div class="form-group">
+                <label style="font-size: 35px; margin-left; color: dodgerblue; margin-top: 30px" class="col-xs-12">Ограничения на содержание компонентов шихты, % от общего веса шихты</label>
+            </div>
+
+
+            <div class="form-group" style="margin-top: 50px">
+                <label class="col-xs-5">Компонент шихты</label>
+                <label class="col-xs-2" style="text-align:center">Минимум</label>
+                <label class="col-xs-2" style="text-align:center">Максимум</label>
+            </div>
+
+            <div class="form-group">
+                <label class="col-xs-5">Чугун литейный хромоникелевый</label>
+                <input class="col-xs-2" type="text" name="ComponentMin_1" value="45,00" style="text-align:center" />
+                <input class="col-xs-2" type="text" name="ComponentMax_1" value="75,00" style="text-align:center" />
+            </div>
+            <div class="form-group">
+                <label class="col-xs-5">Чугун литейный коксовый</label>
+                <input class="col-xs-2" type="text" name="ComponentMin_2" value="0,00" style="text-align:center" />
+                <input class="col-xs-2" type="text" name="ComponentMax_2" value="100,00" style="text-align:center" />
+            </div>
+            <div class="form-group">
+                <label class="col-xs-5">Чугун зеркальный</label>
+                <input class="col-xs-2" type="text" name="ComponentMin_3" value="10,00" style="text-align:center" />
+                <input class="col-xs-2" type="text" name="ComponentMax_3" value="20,00" style="text-align:center" />
+            </div>
+            <div class="form-group">
+                <label class="col-xs-5">Лом чугунный</label>
+                <input class="col-xs-2" type="text" name="ComponentMin_4" value="6,00" style="text-align:center" />
+                <input class="col-xs-2" type="text" name="ComponentMax_4" value="15,00" style="text-align:center" />
+            </div>
+            <div class="form-group">
+                <label class="col-xs-5">Лом стальной</label>
+                <input class="col-xs-2" type="text" name="ComponentMin_5" value="6,00" style="text-align:center" />
+                <input class="col-xs-2" type="text" name="ComponentMax_5" value="15,00" style="text-align:center" />
+            </div>
+            <div class="form-group">
+                <label class="col-xs-5">Возврат</label>
+                <input class="col-xs-2" type="text" name="ComponentMin_6" value="12,00" style="text-align:center" />
+                <input class="col-xs-2" type="text" name="ComponentMax_6" value="40,00" style="text-align:center" />
+            </div>
+            <div class="form-group">
+                <label class="col-xs-5">Ферромарганец</label>
+                <input class="col-xs-2" type="text" name="ComponentMin_7" value="0,00" style="text-align:center" />
+                <input class="col-xs-2" type="text" name="ComponentMax_7" value="100,00" style="text-align:center" />
+            </div>
+
+            <div class="form-group">
+                <label style="font-size: 35px; margin-left; color: dodgerblue; margin-top: 30px" class="col-xs-12">Ограничения на содержание химических элеметов в шихте, % масс.</label>
+            </div>
+
+            <div class="form-group" style="margin-top: 50px">
+                <label class="col-xs-5">Элемент</label>
+                <label class="col-xs-2" style="text-align:center">Минимум</label>
+                <label class="col-xs-2" style="text-align:center">Максимум</label>
+            </div>
+
+            <div class="form-group">
+                <label class="col-xs-5">[Si]</label>
+                <input class="col-xs-2" type="text" name="Si_InShihtaNeed_Min" value="2,3" style="text-align:center" />
+                <input class="col-xs-2" type="text" name="Si_InShihtaNeed_Max" value="2,6" style="text-align:center" />
+            </div>
+            <div class="form-group">
+                <label class="col-xs-5">[Mn]</label>
+                <input class="col-xs-2" type="text" name="Mn_InShihtaNeed_Min" value="0,37" style="text-align:center" />
+                <input class="col-xs-2" type="text" name="Mn_InShihtaNeed_Max" value="3,10" style="text-align:center" />
+            </div>
+            <div class="form-group">
+                <label class="col-xs-5">[Cr]</label>
+                <input class="col-xs-2" type="text" name="Cr_InShihtaNeed_Min" value="1,40" style="text-align:center" />
+                <input class="col-xs-2" type="text" name="Cr_InShihtaNeed_Max" value="3,40" style="text-align:center" />
+            </div>
+            <div class="form-group">
+                <label class="col-xs-5">[Ni]</label>
+                <input class="col-xs-2" type="text" name="Ni_InShihtaNeed_Min" value="0,70" style="text-align:center" />
+                <input class="col-xs-2" type="text" name="Ni_InShihtaNeed_Max" value="1,50" style="text-align:center" />
+            </div>
+
+
+
+            <div class="form-group" style="margin-left: auto; margin-top: 30px">
+                <button type="submit" style="font-size: 20px" class="btn btn-danger">Расчет</button>
+            </div>
+        </form>
+    </div>
+</body>
+
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('#form_calc').on('submit', function (e) {
+
+
+            var Si_InComponent_1 = parseFloat($('input[name="Si_InComponent_1"]').val().replace(/,/, '.'));
+            var Mn_InComponent_1 = parseFloat($('input[name="Mn_InComponent_1"]').val().replace(/,/, '.'));
+            var Cr_InComponent_1 = parseFloat($('input[name="Cr_InComponent_1"]').val().replace(/,/, '.'));
+            var Ni_InComponent_1 = parseFloat($('input[name="Ni_InComponent_1"]').val().replace(/,/, '.'));
+            var CostComponent_1 = parseFloat($('input[name="CostComponent_1"]').val().replace(/,/, '.'));
+
+            var Si_InComponent_2 = parseFloat($('input[name="Si_InComponent_2"]').val().replace(/,/, '.'));
+            var Mn_InComponent_2 = parseFloat($('input[name="Mn_InComponent_2"]').val().replace(/,/, '.'));
+            var Cr_InComponent_2 = parseFloat($('input[name="Cr_InComponent_2"]').val().replace(/,/, '.'));
+            var Ni_InComponent_2 = parseFloat($('input[name="Ni_InComponent_2"]').val().replace(/,/, '.'));
+            var CostComponent_2 = parseFloat($('input[name="CostComponent_2"]').val().replace(/,/, '.'));
+
+            var Si_InComponent_3 = parseFloat($('input[name="Si_InComponent_3"]').val().replace(/,/, '.'));
+            var Mn_InComponent_3 = parseFloat($('input[name="Mn_InComponent_3"]').val().replace(/,/, '.'));
+            var Cr_InComponent_3 = parseFloat($('input[name="Cr_InComponent_3"]').val().replace(/,/, '.'));
+            var Ni_InComponent_3 = parseFloat($('input[name="Ni_InComponent_3"]').val().replace(/,/, '.'));
+            var CostComponent_3 = parseFloat($('input[name="CostComponent_3"]').val().replace(/,/, '.'));
+
+            var Si_InComponent_4 = parseFloat($('input[name="Si_InComponent_4"]').val().replace(/,/, '.'));
+            var Mn_InComponent_4 = parseFloat($('input[name="Mn_InComponent_4"]').val().replace(/,/, '.'));
+            var Cr_InComponent_4 = parseFloat($('input[name="Cr_InComponent_4"]').val().replace(/,/, '.'));
+            var Ni_InComponent_4 = parseFloat($('input[name="Ni_InComponent_4"]').val().replace(/,/, '.'));
+            var CostComponent_4 = parseFloat($('input[name="CostComponent_4"]').val().replace(/,/, '.'));
+
+            var Si_InComponent_5 = parseFloat($('input[name="Si_InComponent_5"]').val().replace(/,/, '.'));
+            var Mn_InComponent_5 = parseFloat($('input[name="Mn_InComponent_5"]').val().replace(/,/, '.'));
+            var Cr_InComponent_5 = parseFloat($('input[name="Cr_InComponent_5"]').val().replace(/,/, '.'));
+            var Ni_InComponent_5 = parseFloat($('input[name="Ni_InComponent_5"]').val().replace(/,/, '.'));
+            var CostComponent_5 = parseFloat($('input[name="CostComponent_5"]').val().replace(/,/, '.'));
+
+            var Si_InComponent_6 = parseFloat($('input[name="Si_InComponent_6"]').val().replace(/,/, '.'));
+            var Mn_InComponent_6 = parseFloat($('input[name="Mn_InComponent_6"]').val().replace(/,/, '.'));
+            var Cr_InComponent_6 = parseFloat($('input[name="Cr_InComponent_6"]').val().replace(/,/, '.'));
+            var Ni_InComponent_6 = parseFloat($('input[name="Ni_InComponent_6"]').val().replace(/,/, '.'));
+            var CostComponent_6 = parseFloat($('input[name="CostComponent_6"]').val().replace(/,/, '.'));
+
+            var Si_InComponent_7 = parseFloat($('input[name="Si_InComponent_7"]').val().replace(/,/, '.'));
+            var Mn_InComponent_7 = parseFloat($('input[name="Mn_InComponent_7"]').val().replace(/,/, '.'));
+            var Cr_InComponent_7 = parseFloat($('input[name="Cr_InComponent_7"]').val().replace(/,/, '.'));
+            var Ni_InComponent_7 = parseFloat($('input[name="Ni_InComponent_7"]').val().replace(/,/, '.'));
+            var CostComponent_7 = parseFloat($('input[name="CostComponent_7"]').val().replace(/,/, '.'));
+
+
+            var ComponentMin_1 = parseFloat($('input[name="ComponentMin_1"]').val().replace(/,/, '.'));
+            var ComponentMax_1 = parseFloat($('input[name="ComponentMax_1"]').val().replace(/,/, '.'));
+
+            var ComponentMin_2 = parseFloat($('input[name="ComponentMin_2"]').val().replace(/,/, '.'));
+            var ComponentMax_2 = parseFloat($('input[name="ComponentMax_2"]').val().replace(/,/, '.'));
+
+            var ComponentMin_3 = parseFloat($('input[name="ComponentMin_3"]').val().replace(/,/, '.'));
+            var ComponentMax_3 = parseFloat($('input[name="ComponentMax_3"]').val().replace(/,/, '.'));
+
+            var ComponentMin_4 = parseFloat($('input[name="ComponentMin_4"]').val().replace(/,/, '.'));
+            var ComponentMax_4 = parseFloat($('input[name="ComponentMax_4"]').val().replace(/,/, '.'));
+
+            var ComponentMin_5 = parseFloat($('input[name="ComponentMin_5"]').val().replace(/,/, '.'));
+            var ComponentMax_5 = parseFloat($('input[name="ComponentMax_5"]').val().replace(/,/, '.'));
+
+            var ComponentMin_6 = parseFloat($('input[name="ComponentMin_6"]').val().replace(/,/, '.'));
+            var ComponentMax_6 = parseFloat($('input[name="ComponentMax_6"]').val().replace(/,/, '.'));
+
+            var ComponentMin_7 = parseFloat($('input[name="ComponentMin_7"]').val().replace(/,/, '.'));
+            var ComponentMax_7 = parseFloat($('input[name="ComponentMax_7"]').val().replace(/,/, '.'));
+
+
+            var Si_InShihtaNeed_Min = parseFloat($('input[name="Si_InShihtaNeed_Min"]').val().replace(/,/, '.'));
+            var Si_InShihtaNeed_Max = parseFloat($('input[name="Si_InShihtaNeed_Max"]').val().replace(/,/, '.'));
+
+            var Mn_InShihtaNeed_Min = parseFloat($('input[name="Mn_InShihtaNeed_Min"]').val().replace(/,/, '.'));
+            var Mn_InShihtaNeed_Max = parseFloat($('input[name="Mn_InShihtaNeed_Max"]').val().replace(/,/, '.'));
+
+            var Cr_InShihtaNeed_Min = parseFloat($('input[name="Cr_InShihtaNeed_Min"]').val().replace(/,/, '.'));
+            var Cr_InShihtaNeed_Max = parseFloat($('input[name="Cr_InShihtaNeed_Max"]').val().replace(/,/, '.'));
+
+            var Ni_InShihtaNeed_Min = parseFloat($('input[name="Ni_InShihtaNeed_Min"]').val().replace(/,/, '.'));
+            var Ni_InShihtaNeed_Max = parseFloat($('input[name="Ni_InShihtaNeed_Max"]').val().replace(/,/, '.'));
+
+
+            //if ((mass_suh < 1000) || (mass_suh > 100000)) {
+            //    alert("Ошибка! Масса сухового материала должна быть в пределах от 1000 до 100000 кг!");
+            //    return false;
+            //}
+            //if ((nach_vlaj < 0.1) || (nach_vlaj > 100)) {
+            //    alert("Ошибка! Начальная влажность форм должна быть в пределах от 0,1 до 100 %!");
+            //    return false;
+            //}
+            //if ((kone_vlaj < 0.1) || (kone_vlaj > 100)) {
+            //    alert("Ошибка! Конечная влажность форм должна быть в пределах от 0,1 до 100 %!");
+            //    return false;
+            //}
+
+        });
+
+    });
+
+</script>
+
+
+

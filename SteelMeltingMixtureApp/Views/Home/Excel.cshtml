@@ -1,0 +1,14 @@
+﻿@model SteelMeltingMixtureApp.Models.InputDataModel
+
+@{
+    ViewBag.Title = "Excel";
+}
+@{ if (ViewBag.Result == "Невозможно сохранить файл")
+    {
+        <h2>@ViewBag.Result</h2>
+    }
+    else
+    {
+        <h2>Файл успешно сохранен!</h2>
+    }
+}

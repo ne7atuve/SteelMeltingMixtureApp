@@ -1,0 +1,40 @@
+﻿@{
+    ViewBag.Title = "Личный кабинет пользователя";
+}
+    <link rel="stylesheet" href="~/Content/css/bootstrap.css" />
+    <body>
+        <div class="container">
+            <div class="text-secondary">
+                <hgroup class="title">
+                    <h1>@ViewBag.Title.</h1>
+                </hgroup>
+            </div>
+            <aside>
+                <div class="text-success">
+                    <h3>Демонстрационный пример решения задачи</h3>
+                    <p>
+                        Тестовые данные, расчет и отображение результатов в табличной и графической формах
+                    </p>
+                    <ul>
+                        <li>@Html.ActionLink("Демонстрационный пример", "Demo", "Home")</li>
+                        <li>@Html.ActionLink("Выполнить расчет", "Universal", "Home")</li>
+                    </ul>
+                </div>
+            </aside>
+
+            <aside>
+                <div class="text-success">
+                    <h3>Таблицы базы данных</h3>
+                    <p>
+                        Просмотр и редактирование данных в таблицах
+                    </p>
+                    <ul>
+                        <li>@Html.ActionLink("Справочник вариантов расчета", "Index", "Variants")</li>
+                        <li>@Html.ActionLink("Справочник компонентов шихты", "Index", "Components")</li>
+                        <li>@Html.ActionLink("Справочник химических элементов", "Index", "Elements")</li>
+                        <li>@Html.ActionLink("Состав компонентов шихты", "Index", "ComponentsElements")</li>
+                    </ul>
+                </div>
+            </aside>
+        </div>
+    </body>

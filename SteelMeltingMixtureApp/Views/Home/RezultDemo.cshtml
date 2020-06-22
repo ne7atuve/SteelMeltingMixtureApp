@@ -1,0 +1,98 @@
+﻿@model SteelMeltingMixtureApp.Models.InputDataModel
+
+@{
+    ViewBag.Title = "Решение";
+}
+
+<div class="form-group">
+    <label style="font-size: 20px; margin-left: 5px; color: red; margin-top: 30px" class="col-xs-8">Решение:</label>
+    <br />
+</div>
+
+<body>
+    <div class="form-group">
+        <label style="font-size: 16px; margin-left: 5px; color: black; margin-top: 30px" class="col-xs-12">Оптимальный состав сталеплавильной шихты, % от общего веса шихты</label>
+        <br />
+    </div>
+    <br /> <br /> <br />
+
+    <div class="row" style="font-size: 14px; margin-left">
+        <div class="col-sm-6">Чугун литейный хромоникелевый</div>
+        <div class="col-sm-4">@Math.Round(ViewBag.Rashet[0], 2)</div>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-6">Чугун литейный коксовый</div>
+        <div class="col-sm-4">@Math.Round(ViewBag.Rashet[1], 2)</div>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-6">Чугун зеркальный</div>
+        <div class="col-sm-4">@Math.Round(ViewBag.Rashet[2], 2)</div>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-6">Лом чугунный</div>
+        <div class="col-sm-4">@Math.Round(ViewBag.Rashet[3], 2)</div>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-6">Лом стальной</div>
+        <div class="col-sm-4">@Math.Round(ViewBag.Rashet[4], 2)</div>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-6">Возврат</div>
+        <div class="col-sm-4">@Math.Round(ViewBag.Rashet[5], 2)</div>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-6">Ферромарганец</div>
+        <div class="col-sm-4">@Math.Round(ViewBag.Rashet[6], 2)</div>
+    </div>
+
+    <br />
+    <br />
+    <div style="width:600px; padding-top:10px; padding-left:30px;">
+        <canvas id="Chart" style="display:block; "></canvas>
+        <script src="~/Scripts/Chart.js"></script>
+        <script>
+                var ctx = document.getElementById('Chart').getContext('2d');
+                var chart = new Chart(ctx, {
+                    type: 'pie',
+                    data: {
+                        labels: ["Чугун литейный хромоникелевый", "Чугун литейный коксовый", "Чугун зеркальный", "Лом чугунный", "Лом стальной", "Возврат","Ферромарганец"],
+                        datasets: [{
+                            label: "Оптимальный состав сталеплавильной шихты",
+                            backgroundColor: [
+                                'rgb(255, 128, 128)',
+                                'rgb(255, 255, 128)',
+                                'rgb(128, 128, 255)',
+                                'rgb(255, 128, 255)',
+                                'rgb(128, 255, 128)',
+                                'rgb(128, 255, 255)',
+                                'rgb(128, 255, 255)'],
+                            data: [
+                                parseFloat(@Math.Round(ViewBag.Rashet[0], 2)),
+                                parseFloat(@Math.Round(ViewBag.Rashet[1], 2)),
+                                parseFloat(@Math.Round(ViewBag.Rashet[2], 2)),
+                                parseFloat(@Math.Round(ViewBag.Rashet[3], 2)),
+                                parseFloat(@Math.Round(ViewBag.Rashet[4], 2)),
+                                parseFloat(@Math.Round(ViewBag.Rashet[5], 2)),
+                                parseFloat(@Math.Round(ViewBag.Rashet[6], 2))],
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        legend: {
+                            display: true,
+                            position: "left"
+                        }
+                    }
+                });
+        </script>
+    </div>
+    <br />
+    <br />
+    @*<a href="@Url.Action("Excel", "Home")">Скачать решение в Excel</a>*@
+</body>

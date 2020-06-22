@@ -1,0 +1,60 @@
+﻿@model IEnumerable<SteelMeltingMixture.Domain.Elements>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+@using (Html.BeginForm("Index", "Elements", FormMethod.Post))
+{
+    <button type="submit" name="action" value="ClearTable">Очистить таблицу</button>
+    <button type="submit" name="action" value="LoadTable">Заполнить таблицу</button>
+    <p>
+    </p>
+}
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.NameElement)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.MinValElement)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.MaxValElement)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.IsSolve)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.NameElement)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MinValElement)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MaxValElement)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IsSolve)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.ID_Element }) |
+                @Html.ActionLink("Details", "Details", new { id = item.ID_Element }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.ID_Element })
+            </td>
+        </tr>
+    }
+
+</table>

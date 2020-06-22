@@ -1,0 +1,58 @@
+﻿@model SteelMeltingMixture.Domain.ComponentsElements
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>ComponentsElements</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Components.NameComponent)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Components.NameComponent)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Elements.NameElement)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Elements.NameElement)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Variants.NameVariant)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Variants.NameVariant)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Val)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Val)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.IsSolve)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IsSolve)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ID_ComponentElements }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
